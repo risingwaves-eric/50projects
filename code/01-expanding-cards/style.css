@@ -1,0 +1,75 @@
+* {
+    /* 如何计算元素的总高度和总宽度 */
+    /* content-box 是默认值;border-box 设置的边框和内边距的值是包含在 总高度和总宽度 内的 */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Muli', sans-serif;
+    /* display 属性设置元素是否被视为块或者内联元素以及用于子元素的布局。 */
+    /* flex 弹性盒子布局 */
+    display: flex;
+    /* 在交叉轴垂直方向上的对齐方式 */
+    align-items: center;
+    /* 定义浏览器之间，如何分配顺着弹性容器主轴的元素之间及其周围的空间 */
+    justify-content: center;
+    /* 100vh 等于 viewport 的高度 */
+    height: 100vh;
+    /* 元素溢出时所需的行为 */
+    overflow: hidden;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    width: 90vw;
+}
+
+.panel {
+    /* 设置背景图大小。cover-缩放背景图以完全覆盖背景区，可能部分不可见 */
+    background-size: covered;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    /* 设置元素的外边框圆角 */
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    /* 设置弹性项目如何增大或缩小以适应其弹性容器中可用的空间 */
+    flex: 0.5;
+    margin: 10px;
+    /* 指定元素在文档中的定位方式 */
+    position: relative;
+    -webkit-transition: all 700ms ease-in;
+}
+
+.panel h3 {
+    font-size: 24px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    opacity: 0;
+}
+
+.panel.active {
+    flex: 5;
+}
+
+.panel.active h3 {
+    opacity: 1;
+    transition: opacity -.3s ease-in 0.4s;
+}
+
+/* 使用 @media 查询，可以针对不同的媒体类型定义不同的样式 */
+@media (max-width: 480px) {
+    .container {
+        widows: 100vw;
+    }
+
+    /* :nth-of-type() CSS 伪类   匹配同类型中的第n个同级兄弟元素 */
+    .panel:nth-of-type(4),
+    .panel:nth-of-type(5) {
+        display: none;
+    }
+}
